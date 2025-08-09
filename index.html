@@ -1,0 +1,169 @@
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HHM HHM Weather App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #2c3e50, #34495e);
+      color: white;
+    }
+
+    .app {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .location {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #aaa;
+    }
+
+    .temp-block h2 {
+      font-size: 72px;
+      margin: 0;
+    }
+
+    .temp-block p {
+      margin: 4px 0;
+    }
+
+    .high-low {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .hourly, .icons, .temps {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+    }
+
+    .forecast {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .forecast h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .forecast .day {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 15px;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app">
+    <div class="header">
+      <h1>My Location</h1>
+      <p class="location">MANIYUR</p>
+      <div class="temp-block">
+        <h2 id="temp">--°</h2>
+        <p id="condition">hhm hhm</p>
+        <p class="high-low">H:--° L:--°</p>
+      </div>
+    </div>
+
+    <div class="hourly">
+      <p>Now</p>
+      <p>9PM</p>
+      <p>10PM</p>
+      <p>11PM</p>
+      <p>12AM</p>
+    </div>
+
+    <div class="icons">
+      <span>🌧️</span>
+      <span>☁️</span>
+      <span>⛅</span>
+      <span>☀️</span>
+      <span>🌩️</span>
+    </div>
+
+    <div class="temps">
+      <p>25°</p>
+      <p>25°</p>
+      <p>24°</p>
+      <p>24°</p>
+      <p>24°</p>
+    </div>
+
+    <div class="forecast">
+      <h3>10-DAY FORECAST</h3>
+      <div class="day">
+        <span>Today</span>
+        <span>🌧️</span>
+        <span>24° / 29°</span>
+      </div>
+      <div class="day">
+        <span>Sat</span>
+        <span>☁️</span>
+        <span>23° / 29°</span>
+      </div>
+      <div class="day">
+        <span>Sun</span>
+        <span>🌦️</span>
+        <span>23° / 28°</span>
+      </div>
+    </div>
+
+    <button onclick="changeFakeWeather()">Check Weather</button>
+  </div>
+
+  <script>
+    function changeFakeWeather() {
+      const temps = [24, 25, 26, 27, 28, 29];
+      const icons = ["☁️", "🌧️", "⛅", "☀️", "🌩️"];
+      const conditions = ["hhm hhm", "hhm hhm 🤷‍♂️", "still hhm hhm", "no idea... hhm hhm"];
+
+      const temp = temps[Math.floor(Math.random() * temps.length)];
+      document.getElementById("temp").innerText = temp + "°";
+
+      const cond = conditions[Math.floor(Math.random() * conditions.length)];
+      document.getElementById("condition").innerText = cond;
+
+      const high = temp + 3;
+      const low = temp - 1;
+      document.querySelector(".high-low").innerText = `H:${high}° L:${low}°`;
+
+      const tempEls = document.querySelectorAll(".temps p");
+      const iconEls = document.querySelectorAll(".icons span");
+
+      tempEls.forEach(el => {
+        const t = temps[Math.floor(Math.random() * temps.length)];
+        el.innerText = `${t}°`;
+      });
+
+      iconEls.forEach(el => {
+        el.innerText = icons[Math.floor(Math.random() * icons.length)];
+      });
+    }
+  </script>
+
+</body>
